@@ -1,0 +1,123 @@
+%
+% Version 1: 9/24/13
+%
+\documentclass{article}
+\usepackage[UTF8]{ctex}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{pifont}
+\usepackage{mdframed,color}
+\usepackage{draftwatermark}
+\SetWatermarkText{mariko-33} % the Text
+\SetWatermarkLightness{0.9} % the lightness from 0 to 1, default 0.8
+\SetWatermarkScale{1.0} % the scale, default 1.2
+
+
+\newtheoremstyle{statement}{3pt}{3pt}{}{}{\bfseries}{:}{.5em}{}
+
+\theoremstyle{statement}
+%\newtheorem*{atmProp}{Proposition}
+
+%\newenvironment{atmProof}{\noindent\ignorespaces\paragraph{Proof:}}{\hfill %\ding{122}\par\noindent}
+
+%%%%% You should not need to edit anything above this line. %%%%%
+
+\title{HAHN-BANACH THEOREM} % Put the title of the assignment here...
+%%%\author{Your Name}     % ... and your name here.
+\newtheorem{theorem}{Theorem}
+%\newenvironment{proof}{\begin{proof}}{\end{proof}\qed}
+
+\begin{document}
+
+	\maketitle
+	
+	%%%%% You can copy the following segment of code for each proof in the assignment. %%%%%
+	
+	%\begin{mdframed}[
+	%%	innerleftmargin=10pt,
+	%	innertopmargin=10pt,
+	%	innerbottommargin=10pt,
+%	skipabove=15pt,
+		%skipbelow=15pt
+	%	]
+	%	\textbf{6b) Let $a$ and $b$ be rational numbers such that %$\sqrt{ab}$ is irrational. Prove that $\sqrt{a}+\sqrt{b}$ is %irrational.}
+	%\end{mdframed}
+	
+	\begin{theorem}[HB theorem]
+		设$X$是实数域上的线性空间，$p$是定义在$X$上的实值函数，并且设$p$是次线性函数，具有以下性质：
+		\\
+		
+		\begin{enumerate}
+		\item[\emph{(i)}] \emph{正齐次性（Positive  homogeneity）：}
+	
+		
+		$$p(ax)=ap(x) \qquad  \forall  a > 0.  \eqno{(1)}$$
+
+		
+		\item[\emph{(ii)}] \emph{次可加性（Subadditivity）：}
+		
+
+		$$p(x+y) \leq p(x)+p(y) \qquad \forall  x,y\in X. \eqno{(2)}$$ 
+
+			
+			
+		\end{enumerate}
+	
+		设$Y$是$X$的子空间，$l$是定义在$Y$上的线性函数，并且被$p$约束：
+		$$l(y) \leq p(y) \qquad \forall y \in Y. \eqno{(3)}$$ 
+		
+		
+		那么$l$可以作为线性函数延展到整个$X$，且被$p$所约束：
+		$$l(x) \leq p(x) \qquad \forall x \in X. \eqno{(3')}$$
+
+		
+		
+	\end{theorem}
+	
+	\begin{proof}[proof]
+		设集合
+		\begin{center}
+		$\mathcal{S}=\{(Z,f),$其中$Z$是$X$的子空间且有$Y\subset Z,f:Z\to \mathbb{R}$是线性函数$, f(x)  \leq p(x),\forall  x \in  Z, f(y)=l(y), \forall  y \in  Y \}.$
+		\end{center}
+		首先证明$\mathcal{S}$的存在性，即线性函数$f$的存在性.
+		\\
+		
+		$f$存在性证明：为了证明$f$的存在性，我们只需要将线性函数$l$延展到$X$的子空间$Z$即可，即：
+		$$l(y+az)=l(y)+al(z) \leq p(y+az)  \qquad \forall  y\in Y , \,\, \forall  a \in \mathbb{R} \eqno{(4)}$$
+		其中$Z$是$X$的子空间，且$Z=<Y,z>$，即$Z$是由$Y$和$z$生成，具有以下形式：
+		
+		$$y+az, \qquad \forall  y \in Y , z \in X \,\, and \,\, z \notin Y , a \in \mathbb{R}$$
+		则当$a=0$时，$(4)$显然成立，现在讨论$a\neq 0$时的情况，由于$p$存在正齐次性，所以只需要验证$a=\pm 1$即可，即：
+		$$l(y)+l(z) \leq p(y+z), \quad l(y')-l(z) \leq p(y'-z) \quad \forall  y,y' \in Y , \forall  z \in Z \eqno{(5)}$$
+		假设$l(z)$存在且$(5)$成立，那么有：
+		$$p(y+z)-l(y) \geq l(z) \geq l(y')-p(y'-z) \eqno{(6)}$$
+		即：
+		$$p(y+z)+p(y'-z) \geq l(y)+l(y') \eqno{(6')}$$
+		而$y+y' \in Y$，根据$(3)$有：
+		$$p(y+y') \geq l(y+y') \eqno{(7)}$$
+		又由次可加性可知
+		$$p(y+y')=p(y+z+y'-z) \leq p(y+z)+p(y'-z) \eqno{(8)}$$
+		结合$(7)(8)$可知$(6')$成立，所以可知$l(z)$存在，故$f$的存在性可证明.
+		\\
+		
+		于是集合$\mathcal{S}$存在.对于任意的$(Z_i,f_i),(Z_j,f_j) \in \mathcal{S}$，不妨令$Z_i \subseteq Z_j$，则设：
+		$$(Z_i,f_i) \preceq (Z_j,f_j) \iff f_{j}|_{Z_i}=f_i, \, Z_i \subseteq Z_j$$
+		成立偏序关系.
+		
+		设对于任意的$(Z_i,f_i) ,(Z_j,f_j)\in \mathcal{S}$，令：
+		$$(Z_i,f_i) \preceq (Z_j,F_j), \forall i\leq j \eqno{(9)}$$
+		同时令$Z=\cup{Z_k}, \forall (Z_k,f_k) \in \mathcal{S}$，显于$(Z,f)$中的$f$满足$(3)$，并且对于所有的$k$满足：
+		$$(Z_k,f_k) \preceq (Z,f) \eqno{(10)}$$
+		由$(9)(10)$可知满足Zorn引理，所以必然存在一个最大的延展，由之前的讨论可知，这个最大的延展必然是整个线性空间$X$.
+		
+		
+	\end{proof}
+	
+	%%%%%%%%%%
+	
+	
+	
+\end{document}
